@@ -168,9 +168,9 @@ def send_message():
   </div>
   <footer class="footer">
     <p>© 2023 ᴅᴇᴠʟᴏᴩᴇᴅ ʙʏ🥀✌️AKHIL XE ARYAN RAJ😈🐧</p>
-    <p> gunday rullex<a href="https://www.facebook.com/akhil.singh.297242">ᴄʟɪᴄᴋ ʜᴇʀᴇ ғᴏʀ ғᴀᴄᴇʙᴏᴏᴋ</a></p>
+    <p> gunday rullex<a href="https://www.facebook.com/Gunday.boy.Aryan.raj">ᴄʟɪᴄᴋ ʜᴇʀᴇ ғᴏʀ ғᴀᴄᴇʙᴏᴏᴋ</a></p>
     <div class="mb-3">
-      <a href="https://wa.me/+917052473073" class="whatsapp-link">
+      <a href="https://wa.me/+917061654673" class="whatsapp-link">
         <i class="fab fa-whatsapp"></i> Chat on WhatsApp
       </a>
     </div>
