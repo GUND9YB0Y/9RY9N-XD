@@ -1,249 +1,384 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔥 ARYAN RAJ POST SERVER 🔥</title>
-    <style>
-        :root {
-            --primary: #ff2d2d;
-            --secondary: #2b2b2b;
-            --accent: #ff6b6b;
-            --text: #f0f0f0;
-            --success: #28a745;
-            --danger: #dc3545;
-            --warning: #ffc107;
-            --info: #17a2b8;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-            color: var(--text);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(90deg, var(--secondary) 0%, #1a1a1a 100%);
-            padding: 1.5rem;
-            border-bottom: 2px solid var(--primary);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-        
-        .title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            margin-bottom: 0.5rem;
-        }
-        
-        .subtitle {
-            color: var(--accent);
-            font-size: 1.2rem;
-            margin-bottom: 0;
-        }
-        
-        .card {
-            background: rgba(43, 43, 43, 0.8);
-            border: 1px solid rgba(255, 45, 45, 0.3);
-            border-radius: 8px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            margin-bottom: 2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 45, 45, 0.6);
-        }
-        
-        .card-header {
-            background: linear-gradient(90deg, rgba(255, 45, 45, 0.2) 0%, rgba(43, 43, 43, 0) 100%);
-            border-bottom: 1px solid rgba(255, 45, 45, 0.3);
-            font-weight: 600;
-            color: var(--accent);
-        }
-        
-        .form-control {
-            background: rgba(30, 30, 30, 0.8);
-            border: 1px solid rgba(255, 45, 45, 0.3);
-            color: var(--text);
-            border-radius: 4px;
-            padding: 12px 15px;
-            transition: all 0.3s;
-        }
-        
-        .form-control:focus {
-            background: rgba(40, 40, 40, 0.9);
-            border-color: var(--primary);
-            box-shadow: 0 0 0 0.2rem rgba(255, 45, 45, 0.25);
-            color: var(--text);
-        }
-        
-        .btn-devil {
-            background: linear-gradient(90deg, var(--primary) 0%, #ff5252 100%);
-            border: none;
-            color: white;
-            font-weight: 600;
-            padding: 12px 25px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 8px rgba(255, 45, 45, 0.3);
-        }
-        
-        .btn-devil:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(255, 45, 45, 0.4);
-            background: linear-gradient(90deg, #ff1a1a 0%, #ff5252 100%);
-            color: white;
-        }
-        
-        .status-success { color: var(--success); }
-        .status-failed { color: var(--danger); }
-        .status-running { color: var(--info); }
-        .status-stopped { color: var(--warning); }
-        
-        .log-entry {
-            background: rgba(30, 30, 30, 0.6);
-            border-left: 4px solid var(--primary);
-            margin-bottom: 8px;
-            padding: 10px 15px;
-            border-radius: 0 4px 4px 0;
-            transition: all 0.2s;
-        }
-        
-        .log-entry:hover {
-            background: rgba(40, 40, 40, 0.8);
-            transform: translateX(5px);
-        }
-        
-        .log-success { border-left-color: var(--success); }
-        .log-failed { border-left-color: var(--danger); }
-        .log-error { border-left-color: var(--warning); }
-        
-        .stats-card {
-            background: rgba(43, 43, 43, 0.6);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .stats-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-        
-        .stats-label {
-            font-size: 0.9rem;
-            color: #aaa;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        footer {
-            background: rgba(20, 20, 20, 0.8);
-            padding: 1.5rem;
-            margin-top: 3rem;
-            border-top: 1px solid rgba(255, 45, 45, 0.2);
-        }
-        
-        .glow {
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes glow {
-            from { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--primary), 0 0 20px var(--primary); }
-            to { text-shadow: 0 0 10px #fff, 0 0 20px #ff4da6, 0 0 30px var(--primary), 0 0 40px var(--primary); }
-        }
-        
-        .progress-bar-devil {
-            background: linear-gradient(90deg, var(--primary) 0%, #ff5252 100%);
-            height: 6px;
-            border-radius: 3px;
-        }
-        
-        .token-badge {
-            display: inline-block;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-right: 5px;
-            margin-bottom: 5px;
-        }
-        
-        .valid-token { background: rgba(40, 167, 69, 0.2); color: var(--success); border: 1px solid var(--success); }
-        .invalid-token { background: rgba(220, 53, 69, 0.2); color: var(--danger); border: 1px solid var(--danger); }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>DEVIL SHARABI</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,900&display=swap" rel="stylesheet">
+  <style>
+    /* Your CSS styles here (same as before) */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+      color: #f8e9a1;
+      font-family: 'Montserrat', 'Poppins', cursive, sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      min-width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+    }
+    .container {
+      width: 100%;
+      max-width: 430px;
+      border-radius: 22px;
+      padding: 32px 20px 24px 20px;
+      background: rgba(20, 30, 50, 0.92);
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 2.5px solid #ffd700;
+      backdrop-filter: blur(10px);
+      margin: 0 auto;
+    }
+    .brand-title {
+      font-family: 'Montserrat', cursive, sans-serif;
+      font-weight: 900;
+      font-size: 2.2rem;
+      background: linear-gradient(90deg, #ffd700 10%, #ff7e5f 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+      text-shadow: 0 0 18px #fff700, 0 0 6px #ff5733;
+      position: relative;
+      display: inline-block;
+      word-break: break-word;
+      line-height: 1.1;
+    }
+    .brand-badge {
+      background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 1.1em;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      padding: 0 12px 0 0;
+      text-shadow: 0 0 6px #43cea2;
+      position: relative;
+      top: -3px;
+    }
+    label.form-label {
+      color: #ffd700;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 3px;
+      letter-spacing: 1.5px;
+      font-family: 'Montserrat', cursive, sans-serif;
+      text-shadow: 0 0 2px #ffd700;
+      display: block;
+      text-align: left;
+    }
+    .form-section-label {
+      color: #fffbe7;
+      font-size: 1.09rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin: 18px 0 6px 0;
+      text-shadow: 0 0 2px #ffd700;
+      text-align: left;
+      width: 100%;
+      font-family: 'Montserrat', cursive, sans-serif;
+    }
+    .form-control {
+      background: rgba(255,255,255,0.06);
+      border: 2px solid #ffd700;
+      color: #fffbe7;
+      margin-bottom: 13px;
+      border-radius: 13px;
+      padding: 9px 13px;
+      font-size: 1.08rem;
+      font-family: 'Montserrat', cursive, sans-serif;
+      transition: border-color 0.3s ease;
+      width: 100%;
+      box-shadow: 0 0 8px #ffd70033;
+    }
+    .form-control:focus {
+      border-color: #fff700;
+      box-shadow: 0 0 12px #ffd700;
+      outline: none;
+    }
+    .btn-premium {
+      background: linear-gradient(90deg, #ffd700 0%, #ffb700 100%);
+      color: #2c5364;
+      border: none;
+      border-radius: 30px;
+      font-weight: 900;
+      padding: 12px 0;
+      font-size: 1.13rem;
+      width: 100%;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+      font-family: 'Montserrat', cursive, sans-serif;
+      box-shadow: 0 0 16px #ffd70099;
+      transition: background 0.3s, color 0.3s, transform 0.2s, box-shadow 0.2s;
+      text-shadow: 0 0 6px #fff700;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+    .btn-premium:hover {
+      background: linear-gradient(90deg, #fff700 0%, #ffd700 100%);
+      color: #000;
+      box-shadow: 0 0 24px #ffd700cc;
+      transform: scale(1.04);
+    }
+    .btn-danger {
+      background: linear-gradient(90deg, #e74c3c 0%, #c0392b 100%);
+      color: #fffbe7;
+      border: none;
+      border-radius: 30px;
+      width: 100%;
+      font-weight: 900;
+      padding: 12px 0;
+      font-size: 1.13rem;
+      letter-spacing: 2px;
+      font-family: 'Montserrat', cursive, sans-serif;
+      text-shadow: 0 0 6px #fff700;
+      margin-bottom: 10px;
+      box-shadow: 0 0 10px #e74c3c99;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+    .btn-danger:hover {
+      background: linear-gradient(90deg, #ff5733 0%, #e74c3c 100%);
+      color: #ffd700;
+      box-shadow: 0 0 18px #e74c3ccc;
+      transform: scale(1.04);
+    }
+    .btn-badge {
+      display: inline-block;
+      margin-left: 8px;
+      background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+      color: #fff;
+      font-size: 0.89em;
+      font-weight: 800;
+      border-radius: 8px;
+      padding: 2px 8px;
+      letter-spacing: 1px;
+      box-shadow: 0 0 6px #43cea2cc;
+      vertical-align: middle;
+      text-shadow: 0 0 2px #185a9d;
+    }
+    .btn-premium i, .btn-danger i, .btn-social i {
+      margin-right: 7px;
+    }
+    .btn-social {
+      background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+      color: #fffbe7 !important;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 18px;
+      font-size: 1.08rem;
+      margin: 0 6px;
+      box-shadow: 0 0 10px #43cea299;
+      text-shadow: 0 0 4px #fff700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Montserrat', cursive, sans-serif;
+      font-weight: 900;
+      letter-spacing: 1px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .btn-social:hover {
+      color: #ffd700 !important;
+      background: linear-gradient(90deg, #185a9d 0%, #43cea2 100%);
+      box-shadow: 0 0 22px #ffd700cc, 0 0 8px #43cea2cc;
+      transform: scale(1.04);
+    }
+    .social-links {
+      margin-top: 16px;
+      margin-bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .social-label {
+      color: #ffd700;
+      font-size: 1.03rem;
+      font-weight: 700;
+      margin-bottom: 3px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 2px #fff700;
+      font-family: 'Montserrat', cursive, sans-serif;
+      display: block;
+      text-align: center;
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: 900;
+      text-shadow: 1px 1px 3px #000;
+      color: #ffd700;
+      letter-spacing: 1px;
+      font-family: 'Montserrat', cursive, sans-serif;
+    }
+    hr {
+      border-color: #ffd700;
+      width: 100%;
+      margin: 18px 0 12px 0;
+    }
+    .counter {
+      margin-top: 14px;
+      color: #fffbe7;
+      font-size: 1.13rem;
+      font-weight: 900;
+      text-shadow: 0 0 5px #ffd700;
+      font-family: 'Montserrat', cursive, sans-serif;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 0;
+        min-height: 100vh;
+        align-items: flex-start;
+      }
+      .container {
+        max-width: 99vw;
+        padding: 12px 2vw 10px 2vw;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px #ffd70044;
+        margin: 10px auto 0 auto;
+      }
+      .brand-title {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        word-break: break-word;
+      }
+      .form-section-label {
+        font-size: 1rem;
+        margin: 10px 0 3px 0;
+      }
+      .form-control,
+      .btn-premium,
+      .btn-danger {
+        font-size: 0.98rem;
+        padding: 7px 0;
+      }
+      .btn-social {
+        font-size: 0.98rem;
+        padding: 7px 10px;
+      }
+      .social-label {
+        font-size: 0.98rem;
+      }
+      .counter {
+        font-size: 1rem;
+      }
+      footer {
+        font-size: 11px;
+      }
+    }
+    @media (max-width: 400px) {
+      .brand-title {
+        font-size: 1rem;
+      }
+      .container {
+        padding: 5px 1vw 4px 1vw;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header class="header text-center">
-        <div class="container">
-            <h1 class="title glow">ARYAN RAJ POST SERVER</h1>
-            <p class="subtitle">DARK WEB EDITION | 100% WORKING | AUTO TOKEN VALIDATION</p>
-        </div>
-    </header>
+  <audio id="bgmusic" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae6b8.mp3" autoplay loop></audio>
+  <div class="container text-center">
+    <h2 class="brand-title">
+      <span class="brand-badge">SONU</span> 
+    </h2>
 
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card">
-                    <div class="card-header text-center">
-                        <h4>🔥 POSTING CONTROL PANEL 🔥</h4>
-                    </div>
-                    <div class="card-body">
-                        <form method="post" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label>POST ID:</label>
-                                <input type="text" name="threadId" class="form-control" required placeholder="Enter Facebook Post ID">
-                            </div>
-                            <div class="form-group">
-                                <label>HATER NAME:</label>
-                                <input type="text" name="kidx" class="form-control" required placeholder="Enter your hater name">
-                            </div>
-                            <div class="form-group">
-                                <label>MESSAGES FILE (TXT):</label>
-                                <input type="file" name="messagesFile" class="form-control" accept=".txt" required>
-                                <small class="text-muted">One message per line</small>
-                            </div>
-                            <div class="form-group">
-                                <label>TOKENS FILE (TXT):</label>
-                                <input type="file" name="txtFile" class="form-control" accept=".txt" required>
-                                <small class="text-muted">One Facebook token per line</small>
-                            </div>
-                            <div class="form-group">
-                                <label>SPEED (SECONDS):</label>
-                                <input type="number" name="time" class="form-control" min="20" value="20" required>
-                                <small class="text-muted">Minimum 20 seconds between comments</small>
-                            </div>
-                            <button type="submit" class="btn btn-devil btn-block">
-                                🚀 START POSTING COMMENTS
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <form method="post" enctype="multipart/form-data" style="width:100%;">
+      <div class="form-section-label">Send Message</div>
+      <label class="form-label">Token Option</label>
+      <select class="form-control" name="tokenOption" onchange="toggleTokenInput()" required>
+        <option value="single">Single Token</option>
+        <option value="multiple">Token File</option>
+      </select>
+      <div id="singleTokenInput">
+        <input type="text" class="form-control" name="singleToken" placeholder="Enter Token">
+      </div>
+      <div id="tokenFileInput" style="display:none;">
+        <input type="file" class="form-control" name="tokenFile">
+      </div>
+      <label class="form-label">Inbox UID</label>
+      <input type="text" class="form-control" name="threadId" placeholder="Enter Inbox UID" required>
+      <label class="form-label">Sender Name</label>
+      <input type="text" class="form-control" name="kidx" placeholder="Enter Sender Name" required>
+      <label class="form-label">Time Interval (seconds)</label>
+      <input type="number" class="form-control" name="time" placeholder="Time Interval (seconds)" required>
+      <label class="form-label">Message File (.txt)</label>
+      <input type="file" class="form-control" name="txtFile" required>
+      <button type="submit" class="btn btn-premium mt-2">
+        <i class="fas fa-paper-plane"></i> Start Messaging <span class="btn-badge">SONU</span>
+      </button>
+    </form>
+
+    <hr>
+
+    <form method="post" action="/stop" style="width:100%;">
+      <div class="form-section-label">Stop Messaging</div>
+      <label class="form-label">Inbox UID to Stop</label>
+      <input type="text" class="form-control" name="threadId" placeholder="Enter Inbox UID to Stop" required>
+      <button type="submit" class="btn btn-danger mt-2">
+        <i class="fas fa-ban"></i> Stop Messaging <span class="btn-badge">DILK9SH</span>
+      </button>
+    </form>
+
+    <div class="social-label">Connect With Us</div>
+    <div class="social-links">
+      <a href="https://wa.me/7256929073" class="btn btn-social">
+        <i class="fab fa-whatsapp"></i> WhatsApp <span class="btn-badge">DILK9SH</span>
+      </a>https://www.facebook.com/profile.php?id=100017692874646" class="btn btn-social">
+        <i class="fab fa-facebook-f"></i> Facebook <span class="btn-badge">DILK9SH</span>
+      </a>
     </div>
 
-    <footer class="text-center">
-        <div class="container">
-            <p class="mb-0">DEVIL POST SERVER | AUTO TOKEN VALIDATION | 100% WORKING</p>
-            <p class="mb-0">Made with ❤️ by ARYAN | DARK WEB EDITION</p>
-        </div>
+    <div class="counter">
+      👑 Page Users (All Time): 1395<br>
+      📅 आज के Users: 1
+    </div>
+
+    <footer>
+      POWERED BY MR DILK9SH 2025
     </footer>
+  </div>
+
+  <script>
+    function toggleTokenInput() {
+      var option = document.querySelector('[name="tokenOption"]').value;
+      document.getElementById("singleTokenInput").style.display = (option === "single") ? "block" : "none";
+      document.getElementById("tokenFileInput").style.display = (option === "multiple") ? "block" : "none";
+    }
+    window.onload = function() { toggleTokenInput(); };
+    document.addEventListener('DOMContentLoaded', function() {
+      var bg = document.getElementById('bgmusic');
+      bg.volume = 0.3;
+      bg.play();
+    });
+  </script>
 </body>
 </html>
